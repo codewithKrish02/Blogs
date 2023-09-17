@@ -20,13 +20,13 @@ timezone: America/Chicago
 
 title: CodeWithKrish # the main title
 
-tagline: Passionate Software Developer from India # it will display as the sub-title
+tagline: Passionate Software Developer # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: "http://codewithkrish02.github.io"
+url: "https://codewithkrish02.github.io"
 
 github:
   username: codewithKrish02 # change to your github username

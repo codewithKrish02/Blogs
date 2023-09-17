@@ -8,7 +8,7 @@ tags: [aws, website, development, lambda, api gateway, dynamodb, cognito]     # 
 
 There are 3 ways in creating the pipelines:
 
-- Event - Based Framework:
+- Event - Based Framework:   
   
   - The services used for this process are:
     
