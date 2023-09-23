@@ -42,57 +42,49 @@ A FlexClone is essentially a clone of the destination volume. When you create a 
 One significant advantage of this approach is that creating a clone from the destination volume doesn't impact the performance or integrity of the source volume. It allows for versatile use of the data while maintaining the security and stability of the source and destination volumes.
 
 ## SVM Peer Relationships
-This SVM peering will only be done in the volume level. So, One SVM can be connected to multiple SVMs within a cluster or another clusters. Let suppose svm1 is connected to svm2 it can also be connected to svm3.
+SVM peering exclusively occurs at the volume level, allowing one SVM to connect with multiple SVMs, either within the same cluster or across different clusters. For instance, if SVM1 is connected to SVM2, it can also establish a connection with SVM3.
 
-`SanpVault` - Its is a NetApp's disk to disk backup method.
+`SnapVault` is NetApp's disk-to-disk backup approach, while `SnapMirror` represents a replication concept. Both SnapMirror data protection and SnapVault extended data protection configurations are available and operate in a highly similar manner.
 
-`SnapMirror` - Its a replication concept.
-
-Only snapmirror data protection and snapvalut extended data protection can be setup. And they work very **Similar**
-
-> The SVM names in the peered clusters must be unique within the clusters.
+> It's essential to ensure that SVM names in the peered clusters remain unique within their respective clusters.
 
 ## Steps to Configure SnapMirror Relationships
-The first point that we need to remember is that creating a snapshot we doesn't require any license for that. But creating a mirror out of that snapshot we need a license.
+The initial point to bear in mind is that creating a snapshot doesn't require any licensing, whereas the creation of a mirror from that snapshot necessitates a license.
 
-1. Verify that SnapMirror licenses have been applied on both the sources and destination clusters.
-2. Establish cluster and svm peering
-3. select the destination cluster and SVM.
+1. Ensure that SnapMirror licenses are applied to both the source and destination clusters.
+2. Establish cluster and SVM peering.
+3. Select the destination cluster and SVM.
 4. Create a data protection volume on the destination.
-5. Select or create a mirror policy
-6. select or create a schedule.
+5. Choose or establish a mirror policy.
+6. Select or establish a schedule.
 7. Create the relationship.
-8. Initilize the relationship.
+8. Initialize the relationship.
 
-Once it goes through all the steps, it is successful in connecting to the other SVM. This is called `Baseline Transfer` 
-```
-What does the policy inlcude?
+Upon successfully completing all these steps, a connection to the other SVM is established, referred to as "Baseline Transfer."
 
-The default policy will be having the schedule details of how frequently that destination volume comes to source and check for the new updates.
+**Policy Contents:**
+The default policy includes schedule details for how frequently the destination volume checks the source for new updates. Alternatively, you can create your own policies and schedules.
 
-Else you can create your own policy and schedules.
-```
+> When monitoring a Relationship while connected to the SVM and observing negative lag time values, it is often due to time zone differences when the Destination SVM is located in another country.
 
-> When you are connected to the SVM and you are monitoring a Relationship and you see the lag time to be in negative values -> The Reason for that is because when the Destination SVM is located in another country, just becuase of the difference between the timezones, it will result in negative values.
+There are three types of mirroring:
+1. Data protection mirroring, known as SnapMirror.
+2. Extended data protection, referred to as SnapVault.
+3. Load sharing, primarily designed for replicating the root volume to the destination.
 
- There are 3 types of mirroring:
- 1. Data protection mirroring -> SnapMirror
- 2. Extended data protection -> SnapVault
- 3. Load sharing -> Mainly designed to replicate the root volume to the destination.
+The SVM root volume is commonly referred to as the "namespace." When NFS or CIFS volumes need to be accessed, the namespace is essential for locating the data. Load sharing is useful when working with a volume that has read-only access, as it allows for a copy of the root volume to facilitate data access within your SVM.
 
- The SVM root volume is generally referred as the namespace. When NFS or CIFS volumes are supposed to be accessed we obviously need the namespace to locate the data. The reason for using the load sharing is that, when you are working on a volume which has a read-only access to it then the namenode will not have any changes on that svm, then you can have a copy of that root for easy access of the the data in your svm. 
-
- Also, we can copy the whole svm which includes -> Root, volumes, data.
+Additionally, it is possible to replicate the entire SVM, including the root, volumes, and data.
 
 ## Possible Errors in SnapMirror Technology
-In the normal scenario the clients will be having the Read/write access only to the source volume, but not for the destination volume. The destination volume will only be having the Read only access.
-The possible failure while using snap mirroring is:
+Under normal circumstances, clients have read/write access only to the source volume and read-only access to the destination volume when using SnapMirror. Possible failures when employing SnapMirror include:
+
 - Operational Failures
 - Application Failures
 - Component Failures
 - Site Failures
-- Reagional Failures
- 
+- Regional Failures
+
 ```mermaid
 graph LR;
 S((Source))
@@ -103,22 +95,22 @@ S --> SR --> D
 C--> |Normal Mode|S
 ```
 
-In the dataprotection options from netapp, other than snapmirroring we will be having multiple conditions for the other clustering options. But in the snap mirror we will not be having any distance limit for mirroring the volume.
+In NetApp's data protection options, apart from SnapMirroring, other clustering options may have various conditions. However, SnapMirror doesn't have a distance limit for mirroring volumes.
 
-Let suppose there is failure occured in the source volume and the source volume goes `offline`. what could be the next step.
+Suppose a failure occurs in the source volume, causing it to go offline. In that case, the following steps can be taken:
 
-- The clients will now access the destination volume and then break the relationship with the source volume.
+- Clients will start accessing the destination volume.
+- The SnapMirror relationship with the source volume will be terminated.
 
-The moment you break the relationship, you need to direct the clients to use this destination volume. Also when the relation is broken there is no more source volume right, the volume which the clients are accessing now will be `new source volume` and will have the `read/write` access to the volume.
-so at this particular instance, the original source volume is offline and the destination volume is the new source volume
+Once the relationship is broken, clients will use the destination volume as the new source volume, which will have read/write access to the volume at this point. Therefore, the original source volume is offline, and the destination volume becomes the new source.
 
-Let suppose the original source volume is back online, and you need to give all his works to him back. Since the clients are working on the new source volume and the original source is back, you need to update all the changes back to the original source volume. so, to get the updated info to orignal source volume from the original destination, you need to run the following command in the original source volume.
+Now, if the original source volume comes back online, and you need to transfer all the changes back to it, you can run the following command in the original source volume:
 
 > snapmirror resync
 
-The main idea is that, once we got the original source volume back we wanted that to have the same work as before. To get this done it will create a temporary mirror relationship from the original destination to original source for the updates when it is offline.
+The primary objective is to restore the original source volume to its previous state. To achieve this, a temporary mirror relationship is created from the original destination to the original source for updates when it is offline.
 
-Now we need to break that temporary mirror relationship and reverse the direction of the relationship. Now the relationship would be from the original source volume to the original destination volume.
+Following this, you'll need to break the temporary mirror relationship and reverse the direction of the relationship. Consequently, the relationship will now be from the original source volume to the original destination volume.
 
 
 
