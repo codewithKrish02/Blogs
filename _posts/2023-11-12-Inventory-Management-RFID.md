@@ -63,7 +63,6 @@ In essence, the architecture marries RFID technology with AWS services, orchestr
 Radio-Frequency Identification (RFID) technology stands as a transformative force in modern inventory management. This wireless technology enables the identification and tracking of objects through the use of radio waves. RFID has found applications across various industries, revolutionizing how items are monitored, traced, and managed. In the context of inventory management, RFID emerges as a game-changer by automating processes, enhancing accuracy, and providing real-time insights.
 
 
-<img src="rfid sensor.jpg" width="500px" height="500px">
 ![Desktop View](/assets/IMS Images/rfid sticker.jpg){: width="500", height="500"}
 ![Desktop View](/assets/IMS Images/rfid sensor.jpg){: width="500", height="500"}
 _Figure 3 : RFID sensor and RFID Stickers_
