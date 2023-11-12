@@ -1,9 +1,9 @@
-﻿---
-title: StockTrackr Inventory Management using RFID Sensors and AWS
-date: 2023-11-12 12:00:00 -5000
-categories: [AWS, Raspberry PI, Inventory Management, RFID Sensors, AWS IOT]
-tags: [aws, website, development, lambda, api gateway, dynamodb, iot, rfid, raspberry pi]
-image: /assets/IMS Images/
+---
+title: ONTAP SnapMirror Replication
+data: 2023-09-18 18:00:00 +0000
+categories: [Bigdata, Replica, ONTAP, NetApp, SnapMirror]
+tags: [bigdata, replica placement, ontap, netapp, disaster recovery]
+mermaid: true
 ---
 
 ## Abstract
