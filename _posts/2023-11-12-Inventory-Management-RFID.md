@@ -3,7 +3,7 @@ title: StockTrackr Inventory Management using RFID Sensors and AWS
 date: 2023-11-12 12:00:00 -5000
 categories: [AWS, Raspberry PI, Inventory Management, RFID Sensors, AWS IOT]
 tags: [aws, website, development, lambda, api gateway, dynamodb, iot, rfid, raspberry pi]
-mermaid: true
+image: /assets/IMS Images/
 ---
 
 ## Abstract
