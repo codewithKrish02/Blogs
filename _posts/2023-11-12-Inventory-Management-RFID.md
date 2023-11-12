@@ -35,7 +35,8 @@ The crux of the system lies in the RFID technology, which captures item informat
 A critical step is connecting the local-level hardware to the broader internet. This connection empowers the system to share data beyond the physical inventory confines. The Raspberry Pi plays a central role, utilizing its built-in Wi-Fi module to establish a connection with the AWS IoT Core. Within the AWS IoT Core environment, the Raspberry Pi assumes the role of a "Thing," complete with necessary certificates for secure communication. AWS IoT Core subscribes to designated "Topics," acting as pathways for data transmission from the hardware.
 
 
- <img src="image.png">
+ ![The Setup](image.png)
+
 Figure 1 : Raspberry Pi connected to RFID sensor
 
 **Preprocessing the Data:**
