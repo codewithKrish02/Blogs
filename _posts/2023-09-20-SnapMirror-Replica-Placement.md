@@ -3,6 +3,7 @@ title: ONTAP SnapMirror Replication
 data: 2023-09-18 18:00:00 +0000
 categories: [Bigdata, Replica, ONTAP, NetApp, SnapMirror]
 tags: [bigdata, replica placement, ontap, netapp, disaster recovery]
+mermaid: true
 ---
 
 ## What is Snap Mirroring?
