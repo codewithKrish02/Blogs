@@ -4,6 +4,7 @@ data: 2023-11-12 18:00:00 +0000
 categories: [AWS, Raspberry PI, Inventory Management, RFID Sensors, AWS IOT]
 tags: [aws, website, development, lambda, api gateway, dynamodb, iot, rfid, raspberry pi]
 mermaid: true
+image: /assets/IMS Images/
 ---
 
 ## Abstract
