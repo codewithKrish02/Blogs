@@ -4,7 +4,6 @@ data: 2023-11-12 18:00:00 +0000
 categories: [AWS, Raspberry PI, Inventory Management, RFID Sensors, AWS IOT]
 tags: [aws, website, development, lambda, api gateway, dynamodb, iot, rfid, raspberry pi]
 mermaid: true
-image: /assets/IMS Images/
 ---
 
 ## Abstract
@@ -35,9 +34,10 @@ The crux of the system lies in the RFID technology, which captures item informat
 A critical step is connecting the local-level hardware to the broader internet. This connection empowers the system to share data beyond the physical inventory confines. The Raspberry Pi plays a central role, utilizing its built-in Wi-Fi module to establish a connection with the AWS IoT Core. Within the AWS IoT Core environment, the Raspberry Pi assumes the role of a "Thing," complete with necessary certificates for secure communication. AWS IoT Core subscribes to designated "Topics," acting as pathways for data transmission from the hardware.
 
 
- ![The Setup](image.png)
+ ![Desktop View](/assets/IMS Images/image.png){: width="500"}
+_Figure 1 : Raspberry Pi connected to RFID sensor_
 
-Figure 1 : Raspberry Pi connected to RFID sensor
+
 
 **Preprocessing the Data:**
 Raw and unrefined data from the hardware undergoes processing through AWS Lambda functions at Level 2. These Lambda functions decode and preprocess RFID tag data, enhancing its utility. Following processing, data progression is facilitated through AWS Event-Bridge.
