@@ -96,16 +96,6 @@ S --> SR --> D
 C--> |Normal Mode|S
 ```
 
-<div class="mermaid" markdown="0" >
-graph LR;
-S((Source))
-SR(SnapMirror Relationship)
-D((Destination))
-C(clients)
-S --> SR --> D
-C--> |Normal Mode|S
-</div>
-
 In NetApp's data protection options, apart from SnapMirroring, other clustering options may have various conditions. However, SnapMirror doesn't have a distance limit for mirroring volumes.
 
 Suppose a failure occurs in the source volume, causing it to go offline. In that case, the following steps can be taken:
