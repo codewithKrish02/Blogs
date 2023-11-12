@@ -295,7 +295,8 @@ Adopting AWS services has led to substantial reduction in infrastructure costs. 
 accommodate increased data volume. This adaptability ensures our inventory management solution remains robust and efficient even as our operations expand.
 
 Overall, the integration of AWS services into our RFID-based inventory management system has yielded a myriad of benefits, significantly impacting the way we operate. Our innovation showcases the substantial advantages of harnessing cutting-edge cloud solutions to address real-world business challenges.
-![Alt text](./Images/analytics1.png) ![Alt text](analytics2.png)
+<img src="https://github.com/codewithKrish02/blogs/blob/main/Images/analytics1.png"> <img src="https://github.com/codewithKrish02/blogs/blob/main/Images/analytics2.png">
+
 
 ![Alt text](<project output1.png>)
 
