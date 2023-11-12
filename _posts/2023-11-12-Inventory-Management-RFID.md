@@ -34,7 +34,7 @@ The crux of the system lies in the RFID technology, which captures item informat
 A critical step is connecting the local-level hardware to the broader internet. This connection empowers the system to share data beyond the physical inventory confines. The Raspberry Pi plays a central role, utilizing its built-in Wi-Fi module to establish a connection with the AWS IoT Core. Within the AWS IoT Core environment, the Raspberry Pi assumes the role of a "Thing," complete with necessary certificates for secure communication. AWS IoT Core subscribes to designated "Topics," acting as pathways for data transmission from the hardware.
 
 
- ![Desktop View](/assets/IMS Images/image.png){: width="500"}
+ ![Desktop View](/assets/IMS Images/image.png){}
 _Figure 1 : Raspberry Pi connected to RFID sensor_
 
 
@@ -45,7 +45,9 @@ Raw and unrefined data from the hardware undergoes processing through AWS Lambda
 The data is now poised for cloud storage. The preferred storage solution is Amazon DynamoDB, a versatile NoSQL database service. DynamoDB excels in structured data handling and thrives in maintaining transactional records. The architecture incorporates two distinct tables: the Inventory Table and the Stock Table.
 The Inventory Table catalogs inventory movements, recording attributes like Reader ID, Book ID, Status (Available or Out of Stock), and timestamps for entry and exit. The Stock Table provides a snapshot of inventory composition, including essential information such as Book Name, Author Name, and current Stock count.
 
-![Alt text](<new Architecture for IMS.png>)
+
+![Desktop View](/assets/IMS Images/new Architecture for IMS.png){}
+_Architecture Diagram_
 
 **User Interaction:**
 A user-centric webpage facilitates inventory management. Users can add new books to the inventory and, upon issuance, associate RFID tags with corresponding Book IDs. This action triggers an asynchronous process to update the Inventory Table's status and timestamps.
@@ -60,10 +62,12 @@ In essence, the architecture marries RFID technology with AWS services, orchestr
 ## RFID Technology:
 Radio-Frequency Identification (RFID) technology stands as a transformative force in modern inventory management. This wireless technology enables the identification and tracking of objects through the use of radio waves. RFID has found applications across various industries, revolutionizing how items are monitored, traced, and managed. In the context of inventory management, RFID emerges as a game-changer by automating processes, enhancing accuracy, and providing real-time insights.
 
-<img src="rfid sticker.jpg" width="500px" height="500px">
-<img src="rfid sensor.jpg" width="500px" height="500px">
 
-Figure 3 : RFID sensor and RFID Stickers    
+<img src="rfid sensor.jpg" width="500px" height="500px">
+![Desktop View](/assets/IMS Images/rfid sticker.jpg){: width="500", height="500"}
+![Desktop View](/assets/IMS Images/rfid sensor.jpg){: width="500", height="500"}
+_Figure 3 : RFID sensor and RFID Stickers_
+
 
 **Basic Working Principle:** At its core, RFID technology operates on a simple yet potent principle. It involves two key components: RFID tags and RFID readers. RFID tags are small, intelligent devices that are attached to or embedded within items to be tracked. Each tag holds a unique identifier and may store additional data about the item it's affixed to. On the other hand, RFID readers are devices designed to communicate with these tags.
 
@@ -81,9 +85,9 @@ In the context of the Inventory Management System, RFID technology is harnessed 
 
 ## System Workflow
 
-<img src="mermaid flow.png" width="400px">
+![Desktop View](/assets/IMS Images/mermaid flow.png){: width="500", height="500"}
+_Figure 4: Flow diagram for IMS_
 
-Figure 4: Flow diagram for IMS
 - RFID Tag Scanning:    
     - An RFID reader is placed in the library, and each book is equipped with an RFID tag.
     - When a library user borrows or returns a book, they place it near the RFID reader for scanning.
@@ -299,8 +303,14 @@ accommodate increased data volume. This adaptability ensures our inventory manag
 Overall, the integration of AWS services into our RFID-based inventory management system has yielded a myriad of benefits, significantly impacting the way we operate. Our innovation showcases the substantial advantages of harnessing cutting-edge cloud solutions to address real-world business challenges.
 <img src="https://github.com/codewithKrish02/blogs/blob/main/Images/analytics1.png"> <img src="https://github.com/codewithKrish02/blogs/blob/main/Images/analytics2.png">
 
+![Desktop View](/assets/IMS Images/analytics1.png){: width="500", height="500"}
+![Desktop View](/assets/IMS Images/analytics2.png){: width="500", height="500"}
+_QuickSight Analytics_
 
-![Alt text](<project output1.png>)
+
+
+![Desktop View](/assets/IMS Images/project output1.png){: width="500", height="500"}
+_Output of the project_
 
 ## Conclusion
 Our RFID-based Inventory management system has ushered in an era of efficiency and accuracy. Through AWS services and IoT technology, we transformed traditional inventory management into a dynamic process. By automating data collection with AWS IoT Core and RFID, we gained real-time visibility into inventory movements. Amazon DynamoDB provided scalable database for storing and retrieving data, enhancing inventory control.Amazon QuickSight's data visualization capabilities empowered us with actionable insights. Our success stems from collaborative efforts and innovative solutions.
