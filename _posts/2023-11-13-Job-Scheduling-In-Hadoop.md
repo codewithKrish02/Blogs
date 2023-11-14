@@ -209,83 +209,83 @@ As jobs complete on nodes, slots become available, and the algorithm continuousl
 
 
 ## What IF's
-1. What if a job has a very high progress share but there are no available slots on any nodes or floating servers?
+**What if a job has a very high progress share but there are no available slots on any nodes or floating servers?**
 
 Example: Suppose Job X has a progress share of 90%, indicating it's near completion. However, all nodes and floating servers are occupied. In this case, Job X will be queued until a slot becomes available.
 
-2. What if a floating server running a high-progress job becomes unavailable or fails during execution?
+**What if a floating server running a high-progress job becomes unavailable or fails during execution?**
 
 Example: If a floating server running Job Y fails, the algorithm should detect the failure and reassign Job Y to another available resource or reschedule it for execution on a different node.
 
-3. What if the cluster experiences a sudden increase in job submissions?
+**What if the cluster experiences a sudden increase in job submissions?**
 
 Example: If the cluster suddenly receives 20 new jobs, the algorithm should dynamically allocate resources, perhaps by adjusting priorities or optimizing resource utilization, to handle the increased workload efficiently.
 
-4. What if a node's capacity changes dynamically during job execution (e.g., due to hardware upgrades or failures)?
+**What if a node's capacity changes dynamically during job execution (e.g., due to hardware upgrades or failures)?**
 
 Example: If Node Z undergoes a hardware upgrade and now has additional slots, the algorithm should dynamically adapt and consider Node Z's increased capacity in future job allocations.
 
-5. What if a job with a lower progress share is allocated to a node with a higher capacity, while a higher progress job is waiting for a slot on a node with a lower capacity?
+**What if a job with a lower progress share is allocated to a node with a higher capacity, while a higher progress job is waiting for a slot on a node with a lower capacity?**
 
 Example: If Job P (progress share 15%) is allocated to Node A (capacity 4 slots), while Job Q (progress share 10%) is waiting for a slot on Node B (capacity 2 slots), the algorithm should consider reallocating Job Q to Node A for better resource utilization.
 
-6. What if the network conditions in the cluster change, impacting data transfer times between nodes?
+**What if the network conditions in the cluster change, impacting data transfer times between nodes?**
 
 Example: If network congestion increases, the algorithm might adjust its strategy to favor local task assignment or implement network-aware scheduling to minimize the impact on job execution time.
 
-7. What if a job's progress share changes dynamically during execution (e.g., due to data dependencies or processing complexities)?
+**What if a job's progress share changes dynamically during execution (e.g., due to data dependencies or processing complexities)?**
 
 Example: If Job R's progress share increases from 20% to 30% due to unforeseen complexities, the algorithm should dynamically adjust its priority, potentially moving Job R up in the queue for faster execution.
 
-8. What if a new node is added to the cluster or an existing node is decommissioned?
+**What if a new node is added to the cluster or an existing node is decommissioned?**
 
 Example: If a new Node C is added to the cluster, the algorithm should recognize the change in capacity and adjust its scheduling decisions accordingly to utilize the additional resources.
 
-9. What if there are conflicting resource requirements among jobs, such as memory-intensive jobs competing for the same nodes?
+**What if there are conflicting resource requirements among jobs, such as memory-intensive jobs competing for the same nodes?**
 
 Example: If Job S and Job T both require significant memory and are vying for the same nodes, the algorithm might consider memory constraints in its decision-making process, preventing resource contention.
-ß
-10. What if the algorithm encounters a scenario where certain jobs consistently wait for a long time while others get immediate allocation?
+
+**What if the algorithm encounters a scenario where certain jobs consistently wait for a long time while others get immediate allocation?**
 
 Example: If Job U consistently waits longer than other jobs, the algorithm should be monitored and tuned to identify potential biases or inefficiencies. Adjustments may include refining priority calculations or revisiting resource allocation strategies.
 
-11. What if a job has external dependencies, and those dependencies are not available when the job is scheduled to run?
+**What if a job has external dependencies, and those dependencies are not available when the job is scheduled to run?**
   
 Example: Job V requires data from an external source, but the data is not available when the job is scheduled. The algorithm may need to implement mechanisms to handle such dependencies, potentially rescheduling the job when the required data becomes available.
 
-12. What if a job has resource requirements that cannot be met by any single node in the cluster?
+**What if a job has resource requirements that cannot be met by any single node in the cluster?**
         
 Example: Job W requires more slots than any single node can provide. The algorithm should be able to handle multi-node job assignments or implement a strategy to split the job into smaller tasks that can run concurrently on multiple nodes.
 
-13. What if a high-priority job has been waiting for a long time, and no nodes or floating servers become available?
+**What if a high-priority job has been waiting for a long time, and no nodes or floating servers become available?**
         
 Example: Job X, with a high progress share, has been waiting for execution, but no resources are available. The algorithm may need to periodically reassess the queue and prioritize jobs that have been waiting for an extended period.
 
-14. What if there are sudden fluctuations in the available network bandwidth between nodes?
+**What if there are sudden fluctuations in the available network bandwidth between nodes?**
  
 Example: If the network bandwidth between nodes decreases due to external factors, the algorithm might need to adjust its task assignment strategy to minimize the impact on data transfer times.
 
-15. What if certain nodes consistently experience hardware failures or degraded performance?
+**What if certain nodes consistently experience hardware failures or degraded performance?**
         
 Example: Nodes in Rack A are prone to hardware failures. The algorithm should be resilient to such situations, considering the historical reliability of nodes when making scheduling decisions.
 
-16. What if there are specific jobs that require execution within strict time constraints (real-time processing)?
+**What if there are specific jobs that require execution within strict time constraints (real-time processing)?**
         
 Example: Job Y requires real-time processing, and delays could have significant consequences. The algorithm may need to incorporate real-time job prioritization to ensure timely execution.
 
-17. What if there is a need for job prioritization based on business priorities or service-level agreements (SLAs)?
+**What if there is a need for job prioritization based on business priorities or service-level agreements (SLAs)?**
         
 Example: Jobs from the finance department may have higher business priorities than jobs from other departments. The algorithm might need to incorporate business-driven priorities or SLAs in its decision-making process.
 
-18. What if a node becomes temporarily unavailable due to maintenance or other planned activities?
+**What if a node becomes temporarily unavailable due to maintenance or other planned activities?**
 
 Example: Node Z is undergoing scheduled maintenance. The algorithm should be aware of such planned downtimes and reschedule tasks to avoid disruptions to job execution.
 
-19. What if there are security or compliance requirements that impact task assignment (e.g., data residency regulations)?
+**What if there are security or compliance requirements that impact task assignment (e.g., data residency regulations)?**
         
 Example: Certain jobs may need to adhere to data residency regulations, requiring them to be processed in specific geographic locations. The algorithm should consider these requirements when making scheduling decisions.
 
-20. What if there is a need to provide fairness in resource allocation among different users or departments sharing the Hadoop cluster?
+**What if there is a need to provide fairness in resource allocation among different users or departments sharing the Hadoop cluster?**
        
 Example: To ensure fairness, the algorithm may need to implement policies that distribute resources equitably among different users or departments, preventing one user from monopolizing cluster resources.
 
